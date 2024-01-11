@@ -1,0 +1,129 @@
+.secondary-color {
+    background-color: #14213d;
+    color: antiquewhite;
+    min-height: 100vh;
+}
+
+nav, #sidebar {
+    background-color: #fca311;
+}
+
+.primary-color {
+    background-color: #fca311;
+    color: antiquewhite;
+}
+
+footer {
+    position: relative;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+}
+
+.activity-details .activity-cover {
+    margin: 0;
+    position: relative;
+    top: 50%;
+    left: 10%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.activity-details .buy-button {
+    position: relative;
+    border-radius: 0;
+    height: 10vh;
+    width: 100%;
+    font-size: x-large;
+}
+
+.response {
+    width:100%;
+}
+
+.rounded {
+    border-radius: 10px;
+}
+
+table {
+    background: #dedeea;
+    max-height: 50vh;
+    overflow: auto;
+}
+
+form {
+    background: ghostwhite;
+    color: black;
+}
+
+tr.row-highlight td:first-child {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+tr.row-highlight td:last-child {
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-form {
+    padding: 0;
+}
+
+.card {
+    background: ghostwhite;
+    color: black;
+}
+
+nav form {
+    border-radius: 25px;
+    padding: 3%;
+}
+
+.navLink {
+    color: white;
+    display: block;
+    padding: .5rem 1rem;
+    text-decoration: none;
+}
+
+.navLink:hover {
+    color: white;
+    background-color: #0d6dfd73;
+}
+
+.active {
+    color: white;
+    background-color: #0d6efd;
+}
+
+.terciary-color {
+    background-color: white;
+    color: black;
+}
+
+.activity-link {
+    text-decoration: none;
+    color: white;
+}
+
+.activity-link:hover {
+    color:rgb(148, 148, 148);
+}
+
+table .activity-link {
+    color: #14213d;
+}
+
+table .activity-link:hover {
+    color: black;
+    font-weight: bold;
+}
+
+.no-background {
+    background: none;
+}
+
+textarea {
+    max-height: 15vh;
+}
