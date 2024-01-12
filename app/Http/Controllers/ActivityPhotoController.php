@@ -22,7 +22,7 @@ class ActivityPhotoController extends Controller
         ]);
 
         $name = $data['image']->getClientOriginalName();
-        $data['image']->store('public/images');
+        $data['image']->store('storage/images/');
 
         ActivityPhoto::create([
             'activity_id' => $data['activity_id'],
