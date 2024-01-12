@@ -37,6 +37,7 @@ class ActivityFactory extends Factory
             "country_id" => $this->faker->numberBetween(1, Country::all()->count()),
             "duration" => $this->faker->numberBetween(0,120),
             "category_id" => $this->faker->numberBetween(1,4),
+            "user_id"=>$this->faker->numberBetween(1,5)
         ];
     }
 /*

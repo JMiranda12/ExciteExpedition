@@ -26,7 +26,7 @@ class ActivitySeeder extends Seeder
 
         Category::factory()->count(4)->create();
         Country::factory()->count(100)->create();
-        ActivityFactory::new()->count(3)->create();
+        ActivityFactory::new()->count(7)->create();
 
 
         /* // Popula a HostActivity

@@ -22,8 +22,8 @@ class UserSeeder extends Seeder
         UserType::factory()->create();
         UserType::factory()->admin()->create();
 
-        User::factory()->count(7)->create();
-        User::factory()->count(3)->admin()->create();
+        User::factory()->count(10)->create();
+        User::factory()->count(10)->admin()->create();
 
         Address::factory()->count(User::all()->count());
 

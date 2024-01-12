@@ -8,10 +8,13 @@
     <div class="container scolor activity-details">
         <div class="row">
         <div class="col">
-            <img src="{{ asset('storage/image/' . $activity->photos->first()->path) }}" class="img-fluid activity-cover" alt="Photo of activity: {{ ucwords($activity->title, ' ') }}">
+            <img src="{{ asset('storage/image/' . $activity->photos->first()->path) }}" class="custom-left-align img-fluid " alt="Photo of activity: {{ ucwords($activity->title, ' ') }}">
         </div>
             <div class="col">
                 <h1>{{ ucwords($activity->title, ' ') }}</h1>
+
+                <h3>ANFITRIÃO</h3>
+                <p>{{ $activity->user->name }}</p>
 
                 <h3>PRICE</h3>
                 <p>{{ $item->price }}€</p>

@@ -10,6 +10,7 @@ use App\Models\Item;
 use App\Models\Language;
 use App\Models\UserItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ActivityController extends Controller
 {
@@ -236,18 +237,22 @@ class ActivityController extends Controller
             'item_type_id' => 1, // Activity
         ]);
 
-        // Create the activity itself
-        $activity = $item->activity()->create($request->except('photos'));
+        $user = Auth::user();
 
+        // Create the activity itself
+       // $activity = $item->activity()->create($request->except('photos'));
+        $activity = new Activity($request->except('photos'));
+        $activity->user_id = $user->id;
         // Save the activity
-        $activity->save();
+       // $activity->save();
+        $item->activity()->save($activity);
 
         if ($request->hasFile('photos')) {
+            $activityPhotoController = new ActivityPhotoController;
             foreach ($request->file('photos') as $photo) {
-                $path = $photo->store('activity_photos', 'public');
-                ActivityPhotoController::create([
+                $activityPhotoController->create([
                     'activity_id' => $activity->id,
-                    'path' => $path,
+                    'image' => $photo,
                 ]);
             }
         }

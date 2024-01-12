@@ -33,19 +33,19 @@ class Activity extends Model
     protected $fillable = [
         "title","user_id", "description", "first_date", "last_date",
         "language_id", "duration",
-        'item_id', "country_id","category_id"
+        'item_id', "country_id","category_id","user_id"
     ];
 
     public $timestamps = false;
 
-    public function getAvailableDates()
-    {
-
-    }
 
     public function item() {
         return $this->belongsTo(Item::class, 'item_id', 'id');
        // return $this->hasOne(Item::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
   /*  public function host() {
@@ -62,9 +62,7 @@ class Activity extends Model
     public function country() {
         return $this->hasOne(Country::class);
     }
-    public function user(){
-        return $this->hasOne(User::class);
-    }
+
     public function photos()
     {
         return $this->hasMany(ActivityPhoto::class, 'activity_id', 'item_id');

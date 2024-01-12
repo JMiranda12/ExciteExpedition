@@ -24,7 +24,10 @@ class Activity extends Migration
             $table->unsignedBigInteger('language_id');
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('user_id');
 
+
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('language_id')->references('id')->on('language');
             $table->foreign('item_id')->references('id')->on('item');
             $table->foreign('country_id')->references('id')->on('country');

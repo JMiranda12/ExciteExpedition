@@ -113,6 +113,12 @@ Route::post('/profile/userInformation/updateAva', [UserController::class, 'uploa
 
 Route::get('/profile/items', [UserController::class, 'showUserItems'])->name('user.items')->middleware('full-auth');
 
+
+
+/*
+    Route::get('stripe', 'stripe');
+    Route::post('stripe', 'stripePost')->name('stripe.post');
+*/
 /*
  |---------------------------------------------------
  | Rota do How-To

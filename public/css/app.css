@@ -337,6 +337,10 @@ button:focus:not(:focus-visible) {
     outline: 0;
 }
 
+.custom-left-align {
+    margin-right: 100px; /* Adjust the margin as needed */
+}
+
 input,
 button,
 select,

@@ -13,6 +13,10 @@ nav, #sidebar {
     color: antiquewhite;
 }
 
+.custom-left-align {
+    margin-right: 100px; /* Adjust the margin as needed */
+}
+
 footer {
     position: relative;
     padding: 10px 10px 0px 10px;

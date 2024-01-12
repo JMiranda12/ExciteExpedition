@@ -17,7 +17,11 @@ class ActivityPhotoSeeder extends Seeder
         $photos = [
             ['path' => '1.jpeg', 'activity_id' => 1],
             ['path' => '2.jpeg', 'activity_id' => 2],
-            ['path' => '3.jpg', 'activity_id' => 3],
+            ['path' => '3.jpeg', 'activity_id' => 3],
+            ['path' => '4.jpeg', 'activity_id' => 4],
+            ['path' => '5.jpeg', 'activity_id' => 5],
+            ['path' => '6.jpeg', 'activity_id' => 6],
+            ['path' => '7.jpeg', 'activity_id' => 7]
         ];
 
         foreach ($photos as $photo) {
