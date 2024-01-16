@@ -121,7 +121,16 @@ Route::get('/profile/items', [UserController::class, 'showUserItems'])->name('us
  |---------------------------------------------------
  */
 
-Route::get('generate-pdf', [PDFController::class, 'generatePDF']);
+Route::get('generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
+
+/*
+ |---------------------------------------------------
+ | Rota Stripe
+ |---------------------------------------------------
+ */
+Route::get('/checkout', 'App\Http\Controllers\StripeController@checkout')->name('checkout');
+Route::post('/session', 'App\Http\Controllers\StripeController@session')->name('session');
+Route::get('/success', 'App\Http\Controllers\StripeController@success')->name('success');
 
 /*
  |---------------------------------------------------
