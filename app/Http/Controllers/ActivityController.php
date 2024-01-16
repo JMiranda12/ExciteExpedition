@@ -16,64 +16,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ActivityController extends Controller
 {
-    /**
-     * Query to search activities with filters.
-     *
-     * @param string $searchQuery
-     * @param array $selectArgs
-     * @param int|null $category_id
-     * @param int|null $language_id
-     * @param int|null $year
-     * @param int|null $user_id
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-   /* public static function buildSearchActivitiesQuery(
-        string $searchQuery,
-        array $selectArgs,
-        int $host_id = null,
-        int $category_id = null,
-        int $language_id = null,
-        int $year = null,
-        int $user_id = null
-    ) {
-        $query = Activity::select($selectArgs)
-            ->with(['host', 'categories'])
-            ->where(function ($query) use ($searchQuery) {
-                $query->orWhere('title', 'ilike', "%{$searchQuery}%")
-                    ->orWhere('description', 'ilike', "%{$searchQuery}%")
-                    ->orWhereHas('host', function ($query) use ($searchQuery) {
-                        $query->where('name', 'ilike', "%{$searchQuery}%");
-                    });
-            });
-
-        $query->where(function ($query) use ($user_id, $host_id, $category_id, $language_id, $year) {
-            if ($host_id !== null) {
-                $query->whereHas('host', function ($query) use ($host_id) {
-                    $query->where('id', $host_id);
-                });
-            }
-            if ($category_id !== null) {
-                $query->whereHas('categories', function ($query) use ($category_id) {
-                    $query->where('id', $category_id);
-                });
-            }
-            if ($language_id !== null) {
-                $query->where('language_id', '=', $language_id);
-            }
-            if ($user_id !== null) {
-                $query->whereHas('userItem', function ($query) use ($user_id) {
-                    $query->where('user_id', $user_id);
-                });
-            }
-        });
-
-        $query->whereHas('item', function ($query) {
-            $query->where('flag_delete', '=', false);
-        });
-
-        return $query;
-    }*/
 
     public static function buildSearchActivitiesQuery(
         string $searchQuery,
@@ -167,60 +109,6 @@ class ActivityController extends Controller
         return $activities;
     }
 
-    /**
-     * Method to create a new activity.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-   /* public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'price' => 'required|numeric|min:1',
-          //  'first_date' => 'required|date|date_format:Y-m-d',
-           // 'last_date' => 'required|date|date_format:Y-m-d',
-            'language_id' => 'required|exists:language,id',
-           // 'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validation for photos
-        ]);
-
-        // Create the item associated with the activity
-        $item = Item::create([
-            'name' => $request->get('title'),
-            'price' => $request->get('price'),
-            'item_type_id' => 1, // Activity
-        ]);
-
-        // Create the activity itself and associate it with the logged-in user
-        $activity = $item->activity()->create($request->except('photos'));
-        $activity->user_id = $request->user()->id; // Associate with the logged-in user
-        $activity->save();
-
-        // Handle photo uploads
-        if ($request->hasFile('photos')) {
-            $photos = [];
-            foreach ($request->file('photos') as $photo) {
-                $path = $photo->store('activity_photos', 'public'); // Adjust the storage path as needed
-                $photos[] = ['path' => $path];
-            }
-
-            // Associate photos with the activity
-            $activity->photos()->createMany($photos);
-        }
-
-        // Associate the item with the user
-        $userItem = new UserItem;
-        $userItem->item_id = $item->id;
-        $userItem->user_id = $request->user()->id;
-        $userItem->save();
-
-        return redirect()->route('home')
-            ->with('success', 'Atividade criada com sucesso.');
-
-        //return redirect()->route('activity.createForm')->with('message', __('Item criado com sucesso'));
-    }
-*/
 
     public function store(Request $request)
     {
