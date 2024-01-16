@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\ActivityPhoto;
+use App\Models\City;
 use App\Models\Country;
 use App\Models\Host;
 use App\Models\Category;
@@ -227,10 +229,11 @@ class ActivityController extends Controller
             'description' => 'required',
             'price' => 'required|numeric|min:1',
             'language_id' => 'required|exists:language,id',
+            'country_id' => 'required|exists:country,id',
+            'city_id' => 'required|exists:city,id',
             'photos.*' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
-        // Create the item associated with the activity
         $item = Item::create([
             'name' => $request->get('title'),
             'price' => $request->get('price'),
@@ -239,25 +242,27 @@ class ActivityController extends Controller
 
         $user = Auth::user();
 
-        // Create the activity itself
-       // $activity = $item->activity()->create($request->except('photos'));
         $activity = new Activity($request->except('photos'));
         $activity->user_id = $user->id;
-        // Save the activity
-       // $activity->save();
         $item->activity()->save($activity);
 
+        // Retrieve the activity_id after saving the activity
+        $activityID = $item->activity->item_id;
+
+        // Handle Photos
         if ($request->hasFile('photos')) {
-            $activityPhotoController = new ActivityPhotoController;
             foreach ($request->file('photos') as $photo) {
-                $activityPhotoController->create([
-                    'activity_id' => $activity->id,
-                    'image' => $photo,
+                $originalName = $photo->getClientOriginalName(); // Get the original file name
+                $path = $photo->storeAs('public/image', $originalName); // Store the file with the original name
+
+                ActivityPhoto::create([
+                    'activity_id' => $activityID,
+                    'path' => $originalName, // Store the original file name in the database
                 ]);
             }
         }
 
-        // Associate the item with the user
+        // Create UserItem
         $userItem = new UserItem;
         $userItem->item_id = $item->id;
         $userItem->user_id = $request->user()->id;
@@ -278,9 +283,10 @@ class ActivityController extends Controller
         $possibleCategories = Category::all();
         $possibleLanguages = Language::all();
         $possibleCountries = Country::all();
+        $possibleCities = City::all();
 
         return view('activity.create', compact(
-            'possibleCategories', 'possibleLanguages','loggedInUser','possibleCountries'
+            'possibleCategories', 'possibleLanguages','loggedInUser','possibleCountries','possibleCities'
         ));
     }
 }

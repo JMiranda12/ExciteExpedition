@@ -108,7 +108,7 @@
                     <tr>
                         <td class="title">
                             <img
-                                src="public/images/logo.png"
+                                src="/images/logo.png"
                                 style="width: 100%; max-width: 300px"
                             />
                         </td>

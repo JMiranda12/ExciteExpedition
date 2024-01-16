@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    LabWeb | Index
+    ExciteExpedition | Payment
 @endsection
 
 @section('content')
@@ -74,7 +74,13 @@
                         <div class="alert alert-success" role="alert">{{ session('message') }}</div>
                     @endif
                 </div>
-            </form>
+            </form>{{--
+            <form method="GET" action="{{ route('generate-pdf') }}">
+                @csrf
+                <button type="submit" class="btn btn-primary">
+                    Download PDF
+                </button>
+            </form>--}}
         </div>
     </div>
 @endsection
@@ -138,7 +144,8 @@
                     payment_method: {
                         card: card,
                         billing_details: {name: $('.card_holder_name').val()}
-                    }
+                    },
+                    return_url: {}
                 }
             ).then(function (result) {
                 if (result.error) {

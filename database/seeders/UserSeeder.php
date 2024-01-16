@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
 
         Country::factory()->count(5)->create();
 
+
         City::factory()->count(15)->create();
 
         Address::factory()->count(20)->create();

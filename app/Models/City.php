@@ -24,4 +24,8 @@ class City extends Model
     protected $primaryKey = "id";
 
     public $timestamps = false;
+
+    public function activities() {
+        return $this->hasOne(Activity::class);
+    }
 }

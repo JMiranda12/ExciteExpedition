@@ -12,6 +12,7 @@ use App\Models\Language;
 use App\Models\ActivityPhoto;
 use Database\Factories\ActivityFactory;
 use Illuminate\Database\Seeder;
+use App\Models\City;
 
 class ActivitySeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class ActivitySeeder extends Seeder
     {
 
 
+        City::factory()->count(4)->create();
         Category::factory()->count(4)->create();
         Country::factory()->count(100)->create();
         ActivityFactory::new()->count(7)->create();
@@ -37,6 +39,12 @@ class ActivitySeeder extends Seeder
             ]);
         }
         */
+
+        ActivityFactory::new()->count(7)->create([
+            'city_id' => function() {
+            return City::inRandomOrder()->first()->id;
+            }
+        ]);
 
         // Popula a CategoryActivity
        foreach(Activity::all() as $activity) {

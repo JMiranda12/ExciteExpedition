@@ -22,11 +22,13 @@ class Activity extends Migration
             $table->integer('duration')->default('120');
           //  $table->unsignedBigInteger('host_id');
             $table->unsignedBigInteger('language_id');
+            $table->unsignedBigInteger('city_id');
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
 
 
+            $table->foreign('city_id')->references('id')->on('city');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('language_id')->references('id')->on('language');
             $table->foreign('item_id')->references('id')->on('item');

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\City;
 use App\Models\Country;
 use App\Models\Host;
 use App\Models\Activity;
@@ -37,7 +38,8 @@ class ActivityFactory extends Factory
             "country_id" => $this->faker->numberBetween(1, Country::all()->count()),
             "duration" => $this->faker->numberBetween(0,120),
             "category_id" => $this->faker->numberBetween(1,4),
-            "user_id"=>$this->faker->numberBetween(1,5)
+            "user_id"=>$this->faker->numberBetween(1,5),
+            "city_id" => City::inRandomOrder()->first()->id,
         ];
     }
 /*

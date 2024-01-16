@@ -97,6 +97,22 @@
                         </label>
                         <label class="row">
                             <span class="bold">
+                                {{ __("Cidade") }}:
+                            </span>
+                            <select class="selector rounded form-select-sm @error('city_id') is-invalid @enderror" name="city_id">
+                                <option disabled @if(!old('city_id') or old('city_id') == -1) selected @endif value="-1"> {{ __("Escolha uma cidade") }} </option>
+                                @foreach($possibleCities as $city)
+                                    <option value="{{ $city->id }}" @if(old('city_id') == $city->id) selected @endif>{{ $city->city }}</option>
+                                @endforeach
+                            </select>
+                            @error('country_id')
+                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </label>
+                        <label class="row">
+                            <span class="bold">
                                 {{ __("Category") }}:
                             </span>
                             <select class="selector multi-select @error('category_id') is-invalid @enderror" name="category_id" multiple="multiple">
